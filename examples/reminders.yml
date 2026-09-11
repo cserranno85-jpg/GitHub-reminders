@@ -1,0 +1,22 @@
+name: GitHub Reminders
+
+on:
+  issue_comment:
+    types: [created]
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  reminders:
+    if: github.event_name != 'issue_comment' || startsWith(github.event.comment.body, '/remind')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cserranno85-jpg/GitHub-reminders@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

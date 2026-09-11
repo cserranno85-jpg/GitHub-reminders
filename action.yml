@@ -1,0 +1,9 @@
+name: GitHub Reminders
+description: Free reminder commands for GitHub issues and pull requests, with no external database or hosted service.
+author: Caivra Tech LLC
+branding:
+  icon: clock
+  color: blue
+runs:
+  using: node20
+  main: src/index.mjs
