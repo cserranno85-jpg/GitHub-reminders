@@ -1,18 +1,20 @@
 # GitHub Reminders
 
-Free, open-source reminders for GitHub issues and pull requests.
+**Free, open-source reminders for GitHub issues and pull requests — built and maintained by Caivra Tech LLC.**
 
-**GitHub Reminders** is an independent open-source project from **Caivra Tech LLC**. It lets a user leave a reminder command directly in an issue or pull-request conversation and receive a GitHub mention when the reminder becomes due.
+GitHub Reminders is an independent, repository-native GitHub Action that lets people schedule reminders directly from issue and pull-request conversations and receive a GitHub mention when the reminder becomes due.
 
-No hosted backend. No external database. No account. No subscription.
+No hosted backend. No external database. No separate account. No subscription.
 
-> GitHub Reminders is not an official GitHub product and is not affiliated with or endorsed by GitHub, Inc.
+> **Independent project notice:** GitHub Reminders is not an official GitHub product and is not affiliated with or endorsed by GitHub, Inc.
 
 ## Why this exists
 
-GitHub makes it easy to subscribe to issue and pull-request activity, but it does not provide a simple general-purpose per-conversation reminder command. GitHub Reminders fills that gap with a small repository-native Action that stays free and low-permission.
+GitHub makes it easy to subscribe to issue and pull-request activity, but it does not provide a simple general-purpose per-conversation reminder command. GitHub Reminders fills that gap with a small, transparent, low-permission Action designed to remain free and easy to adopt.
 
-## Commands
+## Quick start
+
+Add the workflow from [`examples/reminders.yml`](examples/reminders.yml) to your repository as `.github/workflows/reminders.yml`, then use commands like:
 
 ```text
 /remind in 7 days Revisit this before deleting the branch
@@ -32,7 +34,7 @@ GitHub itself is the durable reminder store. When a reminder is created, the Act
 issue/PR comment -> GitHub Action -> hidden reminder marker -> scheduled scan -> GitHub mention
 ```
 
-Delivery comments include an idempotency marker so a partial workflow failure does not intentionally re-fire the same reminder on later scheduled runs.
+Delivery comments include an idempotency marker so the same reminder is not intentionally re-fired after partial workflow failure or later scheduled scans.
 
 ## Install
 
@@ -49,7 +51,13 @@ permissions:
 
 See the full [Installation Guide](docs/INSTALLATION.md).
 
-After the first stable release, pin the Action to the `v1` release line as shown in the example workflow. For higher assurance, pin to an exact release commit SHA.
+For V1, pin the Action to:
+
+```yaml
+uses: cserranno85-jpg/GitHub-reminders@v1
+```
+
+For higher assurance, pin to an exact commit SHA.
 
 ## Documentation
 
@@ -57,6 +65,8 @@ After the first stable release, pin the Action to the `v1` release line as shown
 - [Usage](docs/USAGE.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Project Stewardship](docs/PROJECT_STEWARDSHIP.md)
+- [Release Notes](RELEASE_NOTES.md)
+- [Changelog](CHANGELOG.md)
 - [Security](SECURITY.md)
 - [Contributing](CONTRIBUTING.md)
 
@@ -91,16 +101,18 @@ Included:
 - explicit ISO-8601 reminders;
 - listing active reminders on the current issue/PR;
 - creator-only cancellation;
-- idempotent scheduled delivery;
+- scheduled GitHub-native delivery;
+- idempotent exactly-once delivery protection;
 - no runtime dependencies;
-- Node.js built-in test suite.
+- Node.js built-in test suite;
+- end-to-end live smoke testing on canonical `main`.
 
 Not included yet:
 
 - recurring reminders;
 - natural-language date parsing such as "next Friday";
 - user timezone profiles;
-- email, Slack, SMS, or mobile push integrations;
+- Slack, SMS, or external push integrations;
 - conditional reminders based on branch/PR state;
 - a dashboard or hosted service.
 
@@ -117,10 +129,20 @@ npm run check
 
 The implementation intentionally has no npm runtime dependencies.
 
+## About Caivra Tech LLC
+
+**Caivra Tech LLC** is the project steward and copyright holder for GitHub Reminders. This project is maintained as a free contribution to the developer community and as part of Caivra Tech LLC's public engineering portfolio.
+
+GitHub Reminders demonstrates a simple design philosophy: solve a real workflow gap with minimal infrastructure, minimal permissions, transparent behavior, and no unnecessary subscription layer.
+
 ## Stewardship and license
 
-GitHub Reminders is maintained by **Caivra Tech LLC** as a free contribution to the GitHub community.
+Copyright © 2026 **Caivra Tech LLC**.
 
-Copyright © 2026 Caivra Tech LLC. Released under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE), which permits broad use, modification, redistribution, sublicensing, and commercial use subject to its terms.
 
-The MIT License allows broad use, modification, redistribution, sublicensing, and commercial use subject to its terms. See [Project Stewardship](docs/PROJECT_STEWARDSHIP.md) for the project's ownership and contribution model.
+See [Project Stewardship](docs/PROJECT_STEWARDSHIP.md) for the ownership and contribution model.
+
+---
+
+**Built with care by Caivra Tech LLC — free for the GitHub community.**
