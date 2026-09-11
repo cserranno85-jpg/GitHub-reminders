@@ -2,9 +2,15 @@
 
 Free, open-source reminders for GitHub issues and pull requests.
 
-GitHub Reminders is a deliberately small GitHub Action from **Caivra Tech LLC**. It lets a user leave a reminder command directly in an issue or pull-request conversation and receive a GitHub mention when the reminder becomes due.
+**GitHub Reminders** is an independent open-source project from **Caivra Tech LLC**. It lets a user leave a reminder command directly in an issue or pull-request conversation and receive a GitHub mention when the reminder becomes due.
 
 No hosted backend. No external database. No account. No subscription.
+
+> GitHub Reminders is not an official GitHub product and is not affiliated with or endorsed by GitHub, Inc.
+
+## Why this exists
+
+GitHub makes it easy to subscribe to issue and pull-request activity, but it does not provide a simple general-purpose per-conversation reminder command. GitHub Reminders fills that gap with a small repository-native Action that stays free and low-permission.
 
 ## Commands
 
@@ -21,8 +27,6 @@ A reminder belongs to the GitHub user who created it. `/reminders` lists that us
 ## How it works
 
 GitHub itself is the durable reminder store. When a reminder is created, the Action posts a confirmation comment containing a small hidden versioned metadata marker. A scheduled workflow scans repository comments for due markers and posts the reminder back to the original issue or pull request.
-
-This keeps the V1 architecture intentionally simple:
 
 ```text
 issue/PR comment -> GitHub Action -> hidden reminder marker -> scheduled scan -> GitHub mention
@@ -43,7 +47,18 @@ permissions:
   pull-requests: write
 ```
 
-After the first stable release, pin the Action to the `v1` tag as shown in the example workflow. For higher assurance, pin to an exact release commit SHA.
+See the full [Installation Guide](docs/INSTALLATION.md).
+
+After the first stable release, pin the Action to the `v1` release line as shown in the example workflow. For higher assurance, pin to an exact release commit SHA.
+
+## Documentation
+
+- [Installation](docs/INSTALLATION.md)
+- [Usage](docs/USAGE.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Project Stewardship](docs/PROJECT_STEWARDSHIP.md)
+- [Security](SECURITY.md)
+- [Contributing](CONTRIBUTING.md)
 
 ## Timing
 
@@ -102,8 +117,10 @@ npm run check
 
 The implementation intentionally has no npm runtime dependencies.
 
-## License
+## Stewardship and license
 
-MIT. See [LICENSE](LICENSE).
+GitHub Reminders is maintained by **Caivra Tech LLC** as a free contribution to the GitHub community.
 
-Built as a free contribution to the GitHub community by Caivra Tech LLC.
+Copyright © 2026 Caivra Tech LLC. Released under the [MIT License](LICENSE).
+
+The MIT License allows broad use, modification, redistribution, sublicensing, and commercial use subject to its terms. See [Project Stewardship](docs/PROJECT_STEWARDSHIP.md) for the project's ownership and contribution model.
